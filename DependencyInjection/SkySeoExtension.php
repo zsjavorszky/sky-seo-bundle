@@ -34,34 +34,12 @@ class SkySeoExtension extends Extension
                 new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
-        if (isset($config['providers']['in_memory']['class']))
-        {
+        if (isset($config['providers'])
+   		{
         	$class = $config['providers']['in_memory']['class'];
-        }
-        else
-        {
-        	$class = '';
-        }
-        
-        if (isset($config['providers']['in_memory']['defaults']))
-        {
         	$defaults = $config['providers']['in_memory']['defaults'];
-        }
-        else
-        {
-        	$defaults = array();
-        }
-        if (isset($config['providers']['in_memory']['routes']))
-        {
 			$routes = $config['providers']['in_memory']['routes'];        	
-        }
-        else
-        {
-			$routes = array();
-        }
-	        
-        if ($class)
-        {
+
 	        $definition = $container->getDefinition('sky_seo.seo');
 	
 	        $fullName = 'sky_seo.providers.in_memory';
@@ -69,7 +47,8 @@ class SkySeoExtension extends Extension
 	       		new Definition($class, array($defaults, $routes)));
 	        
 	        $this->twigLoad($config, $container);
-        }
+   		}
+
     }
     
    public function twigLoad(array $config, ContainerBuilder $container)

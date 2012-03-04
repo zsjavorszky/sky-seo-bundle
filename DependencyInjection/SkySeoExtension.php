@@ -34,21 +34,42 @@ class SkySeoExtension extends Extension
                 new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
-       print_r ($config);
-       print_r ($configuration);
-       exit
-        $class = $config['providers']['in_memory']['class'];
-        $defaults = $config['providers']['in_memory']['defaults'];
-        $routes = $config['providers']['in_memory']['routes'];
+        if (isset($config['providers']['in_memory']['class']))
+        {
+        	$class = $config['providers']['in_memory']['class'];
+        }
+        else
+        {
+        	$class = '';
+        }
         
-        $definition = $container->getDefinition('sky_seo.seo');
-
-        $fullName = 'sky_seo.providers.in_memory';
-        $container->setDefinition($fullName,
-       		new Definition($class, array($defaults, $routes)));
-        
-        $this->twigLoad($config, $container);
-
+        if (isset($config['providers']['in_memory']['defaults']))
+        {
+        	$defaults = $config['providers']['in_memory']['defaults']
+        }
+        else
+        {
+        	$defaults = array();
+        }
+        if (isset($config['providers']['in_memory']['routes']))
+        {
+			$routes = $config['providers']['in_memory']['routes'];        	
+        }
+        else
+        {
+			$routes = array();
+        }
+	        
+        if ($class)
+        {
+	        $definition = $container->getDefinition('sky_seo.seo');
+	
+	        $fullName = 'sky_seo.providers.in_memory';
+	        $container->setDefinition($fullName,
+	       		new Definition($class, array($defaults, $routes)));
+	        
+	        $this->twigLoad($config, $container);
+        }
     }
     
    public function twigLoad(array $config, ContainerBuilder $container)

@@ -34,7 +34,7 @@ class SkySeoExtension extends Extension
                 new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
-        if (isset($config['providers'])
+        if (isset($config['providers']))
    		{
         	$class = $config['providers']['in_memory']['class'];
         	$defaults = $config['providers']['in_memory']['defaults'];

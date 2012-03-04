@@ -45,7 +45,7 @@ class SkySeoExtension extends Extension
         
         if (isset($config['providers']['in_memory']['defaults']))
         {
-        	$defaults = $config['providers']['in_memory']['defaults']
+        	$defaults = $config['providers']['in_memory']['defaults'];
         }
         else
         {

@@ -89,7 +89,7 @@ class SeoExtension extends \Twig_Extension
     public function renderMetaElement ($attributeName, $attributeValue)
     {
         $content = $this->getMetaContent($attributeName, $attributeValue);
-        return sprintf('<meta name="%s" content="%s" />', $attributeValue, 
+        return sprintf('<meta %s="%s" content="%s" />', $attributeName, $attributeValue, 
                 $content);
     }
 
@@ -102,6 +102,7 @@ class SeoExtension extends \Twig_Extension
     {
         $renderedMetas = "";
         $metas = $this->getMetas();
+        
         
         foreach ($metas as $attributeName => $attributeValues) {
             foreach ($attributeValues as $attributeValue => $content) {

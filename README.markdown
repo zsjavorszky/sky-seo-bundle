@@ -6,8 +6,8 @@
 Add the following lines to your deps file and then run php bin/vendors install:
 
     [SkySeoBundle]
-        git=http://github.com/sky-one/SkySeoBundle
-        target=bundles/Sky/Bundle/SeoBundle
+        git=http://github.com/zsjavorszky/sky-seo-bundle.git
+        target=/bundles/Sky/Bundle/SeoBundle
 
 ### Register the namespaces
 Add the following namespace entriy to the registerNamespaces call in your autoloader:
@@ -44,8 +44,9 @@ To start using the bundle, register it in your Kernel:
 To put the configuration in a external file named "seo.yml" stored in the app/config folder just write in the app/config/config.yml file:
 
     imports:
-        seo: { resource: seo.yml }
-
+        - { resource: parameters.ini }
+        - { resource: security.yml }
+        - { resource: seo.yml }
 
 ### Configure seo.yml file
     sky_seo:
@@ -65,8 +66,8 @@ To put the configuration in a external file named "seo.yml" stored in the app/co
                         pattern: "/contact"
                         metas:
                             name:
-                            title:              "Contact page title"
-                            description:        "Contact page description."
+                                title:              "Contact page title"
+                                description:        "Contact page description."
 
 
 ## Usage 

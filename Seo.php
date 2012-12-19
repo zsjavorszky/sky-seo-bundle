@@ -60,6 +60,12 @@ class Seo extends ContainerAware
         if ($this->match == null) {
             $matcher = $this->getMatcher();
             $path = $req = $this->container->get('request')->getPathInfo();
+            
+            if (($path) != '/')
+            {
+                $path =rtrim($path, "/");
+            }
+            
             try {
                 $match = $matcher->match($path);
             }
